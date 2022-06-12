@@ -1,0 +1,27 @@
+
+
+<main>
+  <input type="text" [formControl]="pesquisa" placeholder="Busca por nome">
+
+  <select [formControl]="profile" (change)="onSelect($event.target)">
+    <option *ngFor="let perfil of perfis" [value]="perfil.nivel">{{ perfil.nivel }}</option>
+  </select>
+  <table>
+    <thead>
+      <tr>
+        <th>Nome </th>
+        <th>Perfil</th>
+        <th>AUM</th>
+        <th>Localização</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let investidor of investidorsFiltereds$ | async">
+        <td>{{ investidor.nome}}</td>
+        <td>{{ investidor.profile.nivel}} </td>
+        <td>{{ investidor.aum}}</td>
+        <td>{{ investidor.endereco.country}}</td>
+      </tr>
+    </tbody>
+  </table>
+</main>
