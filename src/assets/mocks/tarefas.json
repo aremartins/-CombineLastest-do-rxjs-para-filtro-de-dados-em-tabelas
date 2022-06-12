@@ -9,7 +9,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -32,7 +32,7 @@
         "nivel": "gestora"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -55,7 +55,7 @@
         "nivel": "Banco"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -78,7 +78,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -101,7 +101,7 @@
         "nivel": "gestora"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -124,7 +124,7 @@
         "nivel": "Banco"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -153,7 +153,7 @@
             "nivel": "outros"
           },
           "endereco": {
-            "logradouro": "rua 1",
+            "estado": "Acre",
             "country": "Brasil"
           },
           "contatos": [
@@ -178,7 +178,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -201,7 +201,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -224,7 +224,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -246,7 +246,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -269,7 +269,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "São Paulo",
         "country": "Brasil"
       },
       "contatos": [
@@ -292,7 +292,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "São Paulo",
         "country": "Brasil"
       },
       "contatos": [
@@ -315,7 +315,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "São Paulo",
         "country": "Brasil"
       },
       "contatos": [
@@ -338,7 +338,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "São Paulo",
         "country": "Brasil"
       },
       "contatos": [
@@ -361,7 +361,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "São Paulo",
         "country": "Brasil"
       },
       "contatos": [
@@ -384,7 +384,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "São Paulo",
         "country": "Brasil"
       },
       "contatos": [
@@ -407,7 +407,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "sao paulo",
+        "estado": "sao paulo",
         "country": "Brasil"
       },
       "contatos": [
@@ -430,7 +430,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "São Paulo",
         "country": "Brasil"
       },
       "contatos": [
@@ -453,7 +453,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "sp",
+        "estado": "Rio de Janeiro",
         "country": "Brasil"
       },
       "contatos": [
@@ -476,7 +476,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -499,7 +499,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -522,7 +522,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -545,7 +545,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -568,7 +568,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -591,7 +591,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [
@@ -613,7 +613,7 @@
         "nivel": "assets"
       },
       "endereco": {
-        "logradouro": "rua 1",
+        "estado": "Acre",
         "country": "Brasil"
       },
       "contatos": [

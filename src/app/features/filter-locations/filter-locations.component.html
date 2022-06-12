@@ -1,0 +1,3 @@
+<select [formControl]="locations" (change)="changeLocation($event)">
+  <option *ngFor="let estado of estados" [value]="estado.nome">{{ estado.nome }}</option>
+</select>

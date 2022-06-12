@@ -13,7 +13,7 @@ export interface Profile {
 }
 
 export interface Endereco {
-  logradouro: string;
+  estado: string;
   country: string;
 }
 
