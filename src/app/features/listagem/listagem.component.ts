@@ -76,8 +76,28 @@ export class ListagemComponent implements OnInit {
       .subscribe((dados) => (this.perfis = dados));
   }
 
-  selectLocation(evento:any) {
-    console.log(evento)
+  selectLocation(evento: any) {
+    console.log(evento);
+  }
+
+  showAum(num: number) {
+    let valorMon =num.toString()
+    valorMon = num.toLocaleString('pt-br', { style: 'currency', currency:'BRL'});
+    console.log(valorMon)
+    //valorMon = num.toString().indexOf('.');
+    let qtdcasas = valorMon.toString().slice(3).length
+    //console.log(qtdcasas)
+    let tam = valorMon.toString().slice(3).split(',')
+    console.log('i',tam)
+    if(tam.length >= 2){
+      valorMon = tam[1].toString().replace(tam[1],' Mi')
+    }
+    if(tam.length > 4){
+      valorMon = tam[1].toString().replace(tam[1],' Bi')
+    }
+
+    console.log(tam.length);
+    return  tam[0] + valorMon
   }
 }
 

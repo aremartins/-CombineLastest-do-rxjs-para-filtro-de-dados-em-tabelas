@@ -20,7 +20,7 @@
       <tr *ngFor="let investidor of investidorsFiltereds$ | async">
         <td>{{ investidor.nome }}</td>
         <td>{{ investidor.profile.nivel }}</td>
-        <td>{{ investidor.aum }}</td>
+        <td>{{ showAum(investidor.aum)}}</td>
         <td>{{ investidor?.endereco?.estado }}</td>
 
       </tr>

@@ -263,7 +263,7 @@
     ,{
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3.0000000000,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -401,7 +401,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 300.000,
       "profile": {
         "id": 2,
         "nivel": "assets"
