@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Perfil</th>
+      <th>AUM</th>
+      <th>Localização</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let investor of investidorsFiltereds$ | async" (click)="openCaracteristicas(investor.id)">
+      <td>{{ investor.nome }}</td>
+      <td>{{ investor.profile.nivel }}</td>
+      <td>{{ showAum(investor.aum)}}</td>
+      <td>{{ investor?.endereco?.estado }}</td>
+      <td>{{ investor?.id }} </td>
+    </tr>
+  </tbody>
+</table>
+
+

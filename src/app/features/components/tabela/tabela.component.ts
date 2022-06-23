@@ -1,24 +1,23 @@
-import { ProfilesService } from './../services/profiles.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   combineLatest,
   debounceTime,
   map,
-  switchMap,
   Observable,
   startWith,
 } from 'rxjs';
-import { Investidores, Profile } from '../models/tarefas';
-import { ListagemService } from '../services/listagem.service';
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Investidores, Profile } from '../../models/tarefas';
+import { ListagemService } from '../../services/listagem.service';
+import { ProfilesService } from '../../services/profiles.service';
 @Component({
-  selector: 'app-listagem',
-  templateUrl: './listagem.component.html',
-  styleUrls: ['./listagem.component.scss'],
+  selector: 'app-tabela',
+  templateUrl: './tabela.component.html',
+  styleUrls: ['./tabela.component.scss']
 })
-export class ListagemComponent implements OnInit {
+export class TabelaComponent implements OnInit {
+
   estados: FormControl;
   profile: FormControl;
   pesquisa: FormControl;
@@ -85,6 +84,7 @@ export class ListagemComponent implements OnInit {
 
   openCaracteristicas(id:number){
     this.router.navigate(['detail', id], { relativeTo: this.route } )
+    console.log('open')
   }
 
   showAum(num: number) {
@@ -107,7 +107,3 @@ export class ListagemComponent implements OnInit {
     return  tam[0] + valorMon
   }
 }
-
-//this.listagemService
-//   .getInvestidor()
-//   .subscribe((dados) => (this.investidors = dados));
