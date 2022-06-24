@@ -17,6 +17,10 @@ export class ListagemService {
     ))
   }
 
+  postInvestor(investidor:Investidores){
+    return this.http.post<Investidores>('http://localhost:3000/investors', investidor)
+  }
+
   private sortByName(investidorA: Investidores, investidorB: Investidores) {
     if (investidorA.nome > investidorB.nome) {
       return 1;

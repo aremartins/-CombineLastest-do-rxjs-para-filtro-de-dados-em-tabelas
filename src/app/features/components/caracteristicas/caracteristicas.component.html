@@ -7,27 +7,37 @@
     </ul>
   </aside>
   <section>
-    <form>
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" autocomplete="off">
       <div class="basic">
        <div class="header">
           <h2>Informações básicas</h2>
           <button>Editar</button>
+          <button (click)="Cancelar()">Cancelar</button>
        </div>
         <div class="inputs">
-          <select>
-            Profile
-            <option value="1">Banco</option>
-            <option value="2">Assets</option>
+          <select formControlName="estados">
+            Estados
+            <option value="1">SP</option>
+            <option value="2">RJ</option>
           </select>
-          <label for="aum">AUM</label>
-          <input type="text" id="aum">
+
+          <label for="aum">Nome</label>
+          <input type="text" id="aum" formControlName="nome">
         </div>
       </div>
-      <div>
-        <h2>Endereço</h2>
-
-        <input type="text" />
-      </div>
     </form>
+      <div>
+        <div>
+        <h2>Endereço</h2>
+        <form [formGroup]="formulario">
+          <label for="perfil">Perfil</label>
+          <select formControlName="perfil" id="perfil" >
+            <option *ngFor="let investor of investors" [value]="investor.profile?.id">{{investor.profile?.nivel}}</option>
+          </select>
+          <label for="aum">AUM</label>
+          <input formControlName="aum" id="aum">
+        </form>
+      </div>
+   </div>
   </section>
 </main>

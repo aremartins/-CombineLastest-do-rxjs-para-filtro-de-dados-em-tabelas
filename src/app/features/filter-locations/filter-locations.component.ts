@@ -12,6 +12,7 @@ export class FilterLocationsComponent implements OnInit {
  @Output() aoEscolher  = new EventEmitter()
  estados:Estados[] = []
 
+
  @Input() locations: FormControl
 
   constructor(private estadosService: EstadosService) {

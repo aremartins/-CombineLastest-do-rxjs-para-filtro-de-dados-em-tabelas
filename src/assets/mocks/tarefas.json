@@ -3,7 +3,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -26,7 +26,7 @@
     {
       "id": 2,
       "nome": "Asset Itau",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "gestora"
@@ -49,7 +49,7 @@
     {
       "id": 3,
       "nome": "Bola",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "Banco"
@@ -72,7 +72,7 @@
     {
       "id": 4,
       "nome": "Bola",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -95,7 +95,7 @@
     {
       "id": 5,
       "nome": "Bola",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "gestora"
@@ -118,7 +118,7 @@
     {
       "id": 6,
       "nome": "Bola",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "Banco"
@@ -147,7 +147,7 @@
         {
           "id": 1,
           "nome": "Banco",
-          "aum": 3.0000,
+          "aum": 3,
           "profile": {
             "id": 2,
             "nivel": "outros"
@@ -172,7 +172,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -195,7 +195,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -218,7 +218,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -237,10 +237,11 @@
           "name": "João"
         }
       ]
-    },{
+    },
+    {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -259,80 +260,11 @@
           "name": "João"
         }
       ]
-    }
-    ,{
+    },
+    {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000000000,
-      "profile": {
-        "id": 2,
-        "nivel": "assets"
-      },
-      "endereco": {
-        "estado": "São Paulo",
-        "country": "Brasil"
-      },
-      "contatos": [
-        {
-          "id": 1,
-          "name": "Marcio"
-        },
-        {
-          "id": 2,
-          "name": "João"
-        }
-      ]
-    }
-    ,{
-      "id": 1,
-      "nome": "Banco",
-      "aum": 3.0000,
-      "profile": {
-        "id": 2,
-        "nivel": "assets"
-      },
-      "endereco": {
-        "estado": "São Paulo",
-        "country": "Brasil"
-      },
-      "contatos": [
-        {
-          "id": 1,
-          "name": "Marcio"
-        },
-        {
-          "id": 2,
-          "name": "João"
-        }
-      ]
-    }
-    ,{
-      "id": 1,
-      "nome": "Banco",
-      "aum": 3.0000,
-      "profile": {
-        "id": 2,
-        "nivel": "assets"
-      },
-      "endereco": {
-        "estado": "São Paulo",
-        "country": "Brasil"
-      },
-      "contatos": [
-        {
-          "id": 1,
-          "name": "Marcio"
-        },
-        {
-          "id": 2,
-          "name": "João"
-        }
-      ]
-    }
-    ,{
-      "id": 1,
-      "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -355,7 +287,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -378,7 +310,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -401,7 +333,76 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 300.000,
+      "aum": 3,
+      "profile": {
+        "id": 2,
+        "nivel": "assets"
+      },
+      "endereco": {
+        "estado": "São Paulo",
+        "country": "Brasil"
+      },
+      "contatos": [
+        {
+          "id": 1,
+          "name": "Marcio"
+        },
+        {
+          "id": 2,
+          "name": "João"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "nome": "Banco",
+      "aum": 3,
+      "profile": {
+        "id": 2,
+        "nivel": "assets"
+      },
+      "endereco": {
+        "estado": "São Paulo",
+        "country": "Brasil"
+      },
+      "contatos": [
+        {
+          "id": 1,
+          "name": "Marcio"
+        },
+        {
+          "id": 2,
+          "name": "João"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "nome": "Banco",
+      "aum": 3,
+      "profile": {
+        "id": 2,
+        "nivel": "assets"
+      },
+      "endereco": {
+        "estado": "São Paulo",
+        "country": "Brasil"
+      },
+      "contatos": [
+        {
+          "id": 1,
+          "name": "Marcio"
+        },
+        {
+          "id": 2,
+          "name": "João"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "nome": "Banco",
+      "aum": 300,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -424,7 +425,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -447,7 +448,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -470,7 +471,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.00000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -493,7 +494,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -516,7 +517,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -539,7 +540,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -562,7 +563,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -585,7 +586,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -604,10 +605,11 @@
           "name": "João"
         }
       ]
-    },{
+    },
+    {
       "id": 1,
       "nome": "Banco",
-      "aum": 3.0000,
+      "aum": 3,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -626,6 +628,18 @@
           "name": "João"
         }
       ]
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "id": 10
     }
   ]
 }
