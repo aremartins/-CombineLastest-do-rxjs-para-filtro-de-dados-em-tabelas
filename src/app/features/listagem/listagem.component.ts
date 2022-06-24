@@ -59,13 +59,12 @@ export class ListagemComponent implements OnInit {
       map(([investidor, filterString, filterProfile, filterEstados]) =>
         investidor.filter(
           (investidor) =>
-            investidor.nome
-              .toLowerCase()
+            investidor?.nome?.toLowerCase()
               .indexOf(filterString.toLowerCase()) !== -1 &&
-            investidor.profile.nivel
+            investidor?.profile?.nivel
               .toLowerCase()
               .indexOf(filterProfile.toLowerCase()) !== -1 &&
-            investidor.endereco.estado
+            investidor?.endereco?.estado
               .toLowerCase()
               .indexOf(filterEstados.toLowerCase()) !== -1
         )
@@ -88,22 +87,22 @@ export class ListagemComponent implements OnInit {
   }
 
   showAum(num: number) {
-    let valorMon =num.toString()
-    valorMon = num.toLocaleString('pt-br', { style: 'currency', currency:'BRL'});
+    let valorMon =num?.toString()
+    valorMon = num?.toLocaleString('pt-br', { style: 'currency', currency:'BRL'});
     console.log(valorMon)
     //valorMon = num.toString().indexOf('.');
-    let qtdcasas = valorMon.toString().slice(3).length
+    let qtdcasas = valorMon?.toString().slice(3).length
     //console.log(qtdcasas)
-    let tam = valorMon.toString().slice(3).split(',')
+    let tam = valorMon?.toString().slice(3).split(',')
     console.log('i',tam)
-    if(tam.length >= 2){
-      valorMon = tam[1].toString().replace(tam[1],' Mi')
+    if(tam?.length >= 2){
+      valorMon = tam[1]?.toString().replace(tam[1],' Mi')
     }
-    if(tam.length > 4){
-      valorMon = tam[1].toString().replace(tam[1],' Bi')
+    if(tam?.length > 4){
+      valorMon = tam[1]?.toString().replace(tam[1],' Bi')
     }
 
-    console.log(tam.length);
+    console.log(tam?.length);
     return  tam[0] + valorMon
   }
 }

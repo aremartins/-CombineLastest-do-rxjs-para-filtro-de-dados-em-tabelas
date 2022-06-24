@@ -1,9 +1,9 @@
+import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Investidores } from '../../models/tarefas';
 import { ListagemService } from '../../services/listagem.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-caracteristicas',
@@ -14,7 +14,7 @@ export class CaracteristicasComponent implements OnInit {
   investors: Investidores[] = [];
   formulario: FormGroup;
 
-  constructor(private investidor: ListagemService, private http: HttpClient) {
+  constructor(private investidor: ListagemService, private http: HttpClient, private route: ActivatedRoute) {
     this.formulario = new FormGroup({
       perfil: new FormControl(''),
       aum: new FormControl('', Validators.min(0)),
@@ -27,6 +27,22 @@ export class CaracteristicasComponent implements OnInit {
     this.investidor.getInvestidor().subscribe((dados) => {
       this.investors = dados;
     });
+    this.route.params.subscribe(
+      (params:any) => {
+        const id = params['id'];
+        const investor$ = this.investidor.getById(id);
+        investor$.subscribe(investidor => {
+          this.updateForm(investidor)
+        })
+      }
+    )
+  }
+
+  updateForm(investidor:any) {
+    this.formulario.patchValue({
+      perfil: investidor.profile.nivel,
+      aum: investidor.aum
+    })
   }
 
   onSubmit() {

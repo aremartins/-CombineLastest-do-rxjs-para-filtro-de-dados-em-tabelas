@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, take } from 'rxjs';
 import { Investidores } from '../models/tarefas';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListagemService {
-
+readonly API = 'http://localhost:3000/investors'
   constructor(private http: HttpClient) { }
 
 
@@ -15,6 +15,10 @@ export class ListagemService {
     return this.http.get<Investidores[]>('http://localhost:3000/investors').pipe((
       map((investidor) => investidor.sort((investidorA, investidorB)=> this.sortByName(investidorA, investidorB)))
     ))
+  }
+
+  getById(id:any){
+    return this.http.get(`${this.API}/${id}`).pipe(take(1))
   }
 
   postInvestor(investidor:Investidores){

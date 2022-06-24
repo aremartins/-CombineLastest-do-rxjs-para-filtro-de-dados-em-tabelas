@@ -2,8 +2,8 @@
   <input type="text" [formControl]="pesquisa" placeholder="Busca por nome" />
 
   <select [formControl]="profile">
-    <option *ngFor="let perfil of perfis" [value]="perfil.nivel">
-      {{ perfil.nivel }}
+    <option *ngFor="let perfil of perfis" [value]="perfil?.nivel">
+      {{ perfil?.nivel }}
     </option>
   </select>
   <app-filter-locations [locations]="estados" (aoEscolher)="selectLocation($event)"></app-filter-locations>
@@ -18,8 +18,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let investidor of investidorsFiltereds$ | async" (click)="openCaracteristicas(investidor.id)">
-        <td>{{ investidor.nome }}</td>
-        <td>{{ investidor.profile.nivel }}</td>
+        <td>{{ investidor?.nome }}</td>
+        <td>{{ investidor?.profile?.nivel }}</td>
         <td>{{ showAum(investidor.aum)}}</td>
         <td>{{ investidor?.endereco?.estado }}</td>
         <td>{{ investidor?.id }} </td>
