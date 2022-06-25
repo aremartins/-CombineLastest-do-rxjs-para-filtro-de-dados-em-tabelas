@@ -20,6 +20,7 @@ export class CaracteristicasComponent implements OnInit {
   formulario: FormGroup;
   perfis: Profile[] = [];
   estados: Estados[] = [];
+  file!: Set<File>;
 
   constructor(
     private investidorService: ListagemService,
@@ -29,6 +30,7 @@ export class CaracteristicasComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.formulario = new FormGroup({
+      id: new FormControl(''),
       perfil: new FormControl(''),
       nome: new FormControl(''),
       aum: new FormControl(''),
@@ -66,11 +68,12 @@ export class CaracteristicasComponent implements OnInit {
 
   updateForm(investidor: Investidores) {
     this.formulario.patchValue({
+      id: investidor.id,
       nome: investidor.nome,
       aum: investidor.aum,
-      perfil: investidor.profile?.nivel,
-      estados: investidor.endereco?.estado,
     });
+    this.formulario.get('perfil')?.setValue(investidor.profile?.nivel);
+
     // const investor = this.route.snapshot.data['investor']
     // this.formulario = new FormGroup({
     //   perfil: new FormControl(investor.perfil.nivel),
@@ -81,6 +84,14 @@ export class CaracteristicasComponent implements OnInit {
   }
 
   onSubmit() {
+    this.investidorService.patchInvestidor(this.formulario.value).subscribe(
+      (success) => {
+        console.log('ok', success);
+      },
+      (error) => console.log(error, 'erro '),
+      () => console.log('update completo')
+    );
+
     // console.log(this.formulario.value);
     // this.investidor.postInvestor(this.formulario.value);
     // this.http
@@ -95,6 +106,28 @@ export class CaracteristicasComponent implements OnInit {
     //     },
     //     (error: any) => alert(error + 'erro de url')
     //   );
+  }
+
+  compare(obj1: any, obj2: any) {
+    return obj1 && obj2
+      ? obj1.profile?.nivel === obj2.profile?.nivel
+      : obj1 === obj2;
+  }
+
+  onChange(event: any) {
+    this.file = new Set();
+    console.log(event);
+    const selectedFiles = <FileList>event.target.files;
+    document.getElementById('fileLabel')!.innerHTML = selectedFiles[0].name;
+    this.file.add(selectedFiles[0]);
+  }
+
+  onUpload() {
+    if (this.file && this.file.size > 0) {
+      this.investidorService
+        .getFile(this.file, 'http://localhost:3000/upload')
+        .subscribe((response) => console.log('upload concluído'));
+    }
   }
 
   Cancelar() {

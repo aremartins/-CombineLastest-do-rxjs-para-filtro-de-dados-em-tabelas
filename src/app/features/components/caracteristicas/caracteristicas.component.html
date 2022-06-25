@@ -9,42 +9,50 @@
   <section>
     <form [formGroup]="formulario" (ngSubmit)="onSubmit()" autocomplete="off">
       <div class="basic">
-       <div class="header">
+        <div class="header">
           <h2>Informações básicas</h2>
-          <button>Editar</button>
+          <button (click)="onSubmit()">Editar</button>
           <button>Salvar</button>
           <button (click)="Cancelar()">Cancelar</button>
-       </div>
+        </div>
         <div class="inputs">
-          <select formControlName="perfil">
-          <option [value]="investor.profile?.nivel" *ngFor="let investor of investors">{{ investor.profile?.nivel }}</option>
+          <select formControlName="perfil" [compareWith]="compare">
+            <option
+              [ngValue]="investor.profile?.nivel"
+              *ngFor="let investor of investors"
+            >
+              {{ investor.profile?.nivel }}
+            </option>
           </select>
           <!-- popula o option com os dados dos investidores cadastrados -->
           <label for="nome">Nome</label>
-          <input type="text" id="nome" formControlName="nome">
+          <input type="text" id="nome" formControlName="nome" />
           <label for="aum">AUM</label>
-          <input type="text" formControlName="aum" >
+          <input type="text" formControlName="aum" />
         </div>
         <label for="estados">Estados</label>
-          <select formControlName="estados">
-            <option [value]="investor.endereco?.estado" *ngFor="let investor of investors">{{ investor.endereco?.estado }}</option>
-            </select>
-
+        <select formControlName="estados">
+          <option [value]="estado.sigla" *ngFor="let estado of estados">
+            {{ estado.nome }}
+          </option>
+        </select>
       </div>
     </form>
+    <div>
       <div>
-        <div>
         <h2>Endereço</h2>
+        <label for="file" id="fileLabel">Selecionar</label>
+        <input type="file" id="file"(change)="onChange($event)" />
+        <button (click)="onUpload()" [disabled]="!file">Salvar</button>
 
-          <!-- <label for="estados">Estados</label>
+
+        <!-- <label for="estados">Estados</label>
           <select formControlName="estados">
             <option [value]="investor.endereco?.estado" *ngFor="let investor of investors">{{ investor.endereco?.estado }}</option>
             </select>
           <label for="aum">AUM</label>
           <input formControlName="aum" id="aum"> -->
-
       </div>
-   </div>
+    </div>
   </section>
 </main>
-

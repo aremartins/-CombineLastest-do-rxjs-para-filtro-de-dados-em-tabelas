@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, take } from 'rxjs';
 import { Investidores } from '../models/tarefas';
@@ -25,6 +25,22 @@ readonly API = 'http://localhost:3000/investors'
     return this.http.post<Investidores>('http://localhost:3000/investors', investidor)
   }
 
+  putInvestidor(investidor: Investidores){
+    return this.http.put(`${this.API}/${investidor.id}`, investidor).pipe(take(1))
+  }
+
+  patchInvestidor(investidor: Investidores){
+    return this.http.put(`${this.API}/${investidor.id}`, investidor).pipe(take(1))
+  }
+
+  getFile(files: Set<File>, url: string){
+    const formData = new FormData();
+    files.forEach(file => formData.append('file', file, file.name))
+
+    const request = new HttpRequest('POST', url, formData )
+    return this.http.request(request)
+  }
+
   private sortByName(investidorA: Investidores, investidorB: Investidores) {
     if (investidorA.nome > investidorB.nome) {
       return 1;
@@ -34,5 +50,7 @@ readonly API = 'http://localhost:3000/investors'
     }
     return 0;
   }
+
+
 
 }
