@@ -379,7 +379,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3,
+      "aum": 10,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -448,7 +448,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3,
+      "aum": 8,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -471,7 +471,7 @@
     {
       "id": 1,
       "nome": "Banco",
-      "aum": 3,
+      "aum": 5,
       "profile": {
         "id": 2,
         "nivel": "assets"
@@ -640,6 +640,18 @@
     },
     {
       "id": 10
+    },
+    {
+      "id": 11
+    },
+    {
+      "id": 12
+    },
+    {
+      "id": 13
+    },
+    {
+      "id": 14
     }
   ]
 }

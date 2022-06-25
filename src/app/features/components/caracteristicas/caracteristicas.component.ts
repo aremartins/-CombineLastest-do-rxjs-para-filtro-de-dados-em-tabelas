@@ -1,9 +1,14 @@
+import { Profile } from './../../models/tarefas';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Investidores } from '../../models/tarefas';
 import { ListagemService } from '../../services/listagem.service';
+import { ProfilesService } from '../../services/profiles.service';
+import { Estados } from '../../models/estados';
+import { EstadosService } from '../../services/estados.service';
+import { map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-caracteristicas',
@@ -13,55 +18,86 @@ import { ListagemService } from '../../services/listagem.service';
 export class CaracteristicasComponent implements OnInit {
   investors: Investidores[] = [];
   formulario: FormGroup;
+  perfis: Profile[] = [];
+  estados: Estados[] = [];
 
-  constructor(private investidor: ListagemService, private http: HttpClient, private route: ActivatedRoute) {
+  constructor(
+    private investidorService: ListagemService,
+    private http: HttpClient,
+    private profileService: ProfilesService,
+    private estadosService: EstadosService,
+    private route: ActivatedRoute
+  ) {
     this.formulario = new FormGroup({
       perfil: new FormControl(''),
-      aum: new FormControl('', Validators.min(0)),
-      estados: new FormControl(''),
       nome: new FormControl(''),
+      aum: new FormControl(''),
+      estados: new FormControl(''),
     });
   }
 
   ngOnInit(): void {
-    this.investidor.getInvestidor().subscribe((dados) => {
+    this.investidorService.getInvestidor().subscribe((dados) => {
+      //foi preciso buscar os investidores na service para popular as opções dos selects
       this.investors = dados;
     });
-    this.route.params.subscribe(
-      (params:any) => {
-        const id = params['id'];
-        const investor$ = this.investidor.getById(id);
-        investor$.subscribe(investidor => {
-          this.updateForm(investidor)
-        })
-      }
-    )
+    this.profileService
+      .getProfiles()
+      .subscribe((dados) => (this.perfis = dados));
+    this.estadosService
+      .getEstados()
+      .subscribe((dados) => (this.estados = dados));
+    // this.route.params.subscribe((params: any) => {
+    //   //pega o parametro de id da rota, busca o investidor por id na service e atribui  o id da rota
+    //   const id = params['id'];
+    //   const investor$ = this.investidorService.getById(id);
+    //   investor$.subscribe((investor) => {
+    //     this.updateForm(investor); //atualiza o formulario com os dados desse investidor
+    //   });
+    // });
+
+    this.route.params
+      .pipe(
+        map((params: any) => params['id']),
+        switchMap((id) => this.investidorService.getById(id))
+      )
+      .subscribe((investidor) => this.updateForm(investidor));
   }
 
-  updateForm(investidor:any) {
+  updateForm(investidor: Investidores) {
     this.formulario.patchValue({
-      perfil: investidor.profile.nivel,
-      aum: investidor.aum
-    })
+      nome: investidor.nome,
+      aum: investidor.aum,
+      perfil: investidor.profile?.nivel,
+      estados: investidor.endereco?.estado,
+    });
+    // const investor = this.route.snapshot.data['investor']
+    // this.formulario = new FormGroup({
+    //   perfil: new FormControl(investor.perfil.nivel),
+    //   nome: new FormControl(investor.nome),
+    //   aum: new FormControl(investor.aum),
+    //   estados: new FormControl(investor.endereco.estado),
+    // });
   }
 
   onSubmit() {
-    console.log(this.formulario.value);
-    this.investidor.postInvestor(this.formulario.value);
-    this.http
-      .post(
-        'http://localhost:3000/investors',
-        JSON.stringify(this.formulario.value)
-      )
-      .subscribe(dados => {
-        console.log(dados)
-        this.formulario.reset();
-      },
-      (error:any) => alert(error + 'erro de url')
-      );
+    // console.log(this.formulario.value);
+    // this.investidor.postInvestor(this.formulario.value);
+    // this.http
+    //   .post(
+    //     'http://localhost:3000/investors',
+    //     JSON.stringify(this.formulario.value)
+    //   )
+    //   .subscribe(
+    //     (dados) => {
+    //       console.log(dados);
+    //       this.formulario.reset();
+    //     },
+    //     (error: any) => alert(error + 'erro de url')
+    //   );
   }
 
-  Cancelar(){
-    this.formulario.reset()
+  Cancelar() {
+    this.formulario.reset();
   }
 }

@@ -82,7 +82,7 @@ export class ListagemComponent implements OnInit {
     console.log(evento);
   }
 
-  openCaracteristicas(id:number){
+  openCaracteristicas(id:any){
     this.router.navigate(['detail', id], { relativeTo: this.route } )
   }
 

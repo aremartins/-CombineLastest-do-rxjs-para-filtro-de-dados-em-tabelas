@@ -12,32 +12,39 @@
        <div class="header">
           <h2>Informações básicas</h2>
           <button>Editar</button>
+          <button>Salvar</button>
           <button (click)="Cancelar()">Cancelar</button>
        </div>
         <div class="inputs">
-          <select formControlName="estados">
-            Estados
-            <option value="1">SP</option>
-            <option value="2">RJ</option>
+          <select formControlName="perfil">
+          <option [value]="investor.profile?.nivel" *ngFor="let investor of investors">{{ investor.profile?.nivel }}</option>
           </select>
-
-          <label for="aum">Nome</label>
-          <input type="text" id="aum" formControlName="nome">
+          <!-- popula o option com os dados dos investidores cadastrados -->
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" formControlName="nome">
+          <label for="aum">AUM</label>
+          <input type="text" formControlName="aum" >
         </div>
+        <label for="estados">Estados</label>
+          <select formControlName="estados">
+            <option [value]="investor.endereco?.estado" *ngFor="let investor of investors">{{ investor.endereco?.estado }}</option>
+            </select>
+
       </div>
     </form>
       <div>
         <div>
         <h2>Endereço</h2>
-        <form [formGroup]="formulario">
-          <label for="perfil">Perfil</label>
-          <select formControlName="perfil" id="perfil" >
-            <option *ngFor="let investor of investors" [value]="investor.profile?.id">{{investor.profile?.nivel}}</option>
-          </select>
+
+          <!-- <label for="estados">Estados</label>
+          <select formControlName="estados">
+            <option [value]="investor.endereco?.estado" *ngFor="let investor of investors">{{ investor.endereco?.estado }}</option>
+            </select>
           <label for="aum">AUM</label>
-          <input formControlName="aum" id="aum">
-        </form>
+          <input formControlName="aum" id="aum"> -->
+
       </div>
    </div>
   </section>
 </main>
+

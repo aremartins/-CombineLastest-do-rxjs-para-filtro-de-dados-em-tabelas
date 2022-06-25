@@ -18,7 +18,7 @@ readonly API = 'http://localhost:3000/investors'
   }
 
   getById(id:any){
-    return this.http.get(`${this.API}/${id}`).pipe(take(1))
+    return this.http.get<Investidores>(`${this.API}/${id}`).pipe(take(1))
   }
 
   postInvestor(investidor:Investidores){
