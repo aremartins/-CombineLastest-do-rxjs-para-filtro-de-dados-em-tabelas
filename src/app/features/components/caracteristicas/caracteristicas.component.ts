@@ -32,9 +32,14 @@ export class CaracteristicasComponent implements OnInit {
     this.formulario = new FormGroup({
       id: new FormControl(''),
       perfil: new FormControl(''),
-      nome: new FormControl(''),
+      nome: new FormControl('', [Validators.minLength(3), Validators.required]),
       aum: new FormControl(''),
-      estados: new FormControl(''),
+      address: new FormGroup({
+        street: new FormControl(''),
+        city: new FormControl(''),
+        state: new FormControl(''),
+        zip: new FormControl('')
+      })
     });
   }
 
@@ -63,7 +68,18 @@ export class CaracteristicasComponent implements OnInit {
         map((params: any) => params['id']),
         switchMap((id) => this.investidorService.getById(id))
       )
-      .subscribe((investidor) => this.updateForm(investidor));
+      .subscribe((investidor) => {
+        this.updateForm(investidor)
+        // this.formulario.controls['profile']?.setValue(investidor.profile?.nivel) -não funcionou
+      });
+      //se criar um Resolve, pode popular os dados assim:
+       // const investor = this.route.snapshot.data['investor']
+    // this.formulario = new FormGroup({
+    //   perfil: new FormControl(investor.perfil.nivel),
+    //   nome: new FormControl(investor.nome),
+    //   aum: new FormControl(investor.aum),
+    //   estados: new FormControl(investor.endereco.estado),
+    // });
   }
 
   updateForm(investidor: Investidores) {
@@ -71,16 +87,12 @@ export class CaracteristicasComponent implements OnInit {
       id: investidor.id,
       nome: investidor.nome,
       aum: investidor.aum,
+      // profile: investidor.profile?.nivel, - não populou o campo
+      address:{
+        street:investidor.endereco?.estado
+      }
     });
-    this.formulario.get('perfil')?.setValue(investidor.profile?.nivel);
-
-    // const investor = this.route.snapshot.data['investor']
-    // this.formulario = new FormGroup({
-    //   perfil: new FormControl(investor.perfil.nivel),
-    //   nome: new FormControl(investor.nome),
-    //   aum: new FormControl(investor.aum),
-    //   estados: new FormControl(investor.endereco.estado),
-    // });
+    this.formulario.get('perfil')?.patchValue(investidor.profile?.nivel); //funciona!!
   }
 
   onSubmit() {

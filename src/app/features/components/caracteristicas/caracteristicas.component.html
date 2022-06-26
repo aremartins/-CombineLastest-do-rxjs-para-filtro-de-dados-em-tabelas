@@ -12,13 +12,13 @@
         <div class="header">
           <h2>Informações básicas</h2>
           <button (click)="onSubmit()">Editar</button>
-          <button>Salvar</button>
+          <button type="submit" [disabled]="!formulario.valid">Salvar</button>
           <button (click)="Cancelar()">Cancelar</button>
         </div>
         <div class="inputs">
           <select formControlName="perfil" [compareWith]="compare">
             <option
-              [ngValue]="investor.profile?.nivel"
+              [value]="investor.profile?.nivel"
               *ngFor="let investor of investors"
             >
               {{ investor.profile?.nivel }}
@@ -30,21 +30,31 @@
           <label for="aum">AUM</label>
           <input type="text" formControlName="aum" />
         </div>
-        <label for="estados">Estados</label>
-        <select formControlName="estados">
-          <option [value]="estado.sigla" *ngFor="let estado of estados">
-            {{ estado.nome }}
-          </option>
-        </select>
+      </div>
+      <div formGroupName="address">
+        <h2>Address</h2>
+
+        <label for="street">Street: </label>
+        <input id="street" type="text" formControlName="street" />
+
+        <label for="city">City: </label>
+        <input id="city" type="text" formControlName="city" />
+
+        <label for="state">State: </label>
+        <input id="state" type="text" formControlName="state" />
+
+        <label for="zip">Zip Code: </label>
+        <input id="zip" type="text" formControlName="zip" />
       </div>
     </form>
+
     <div>
       <div>
-        <h2>Endereço</h2>
-        <label for="file" id="fileLabel">Selecionar</label>
-        <input type="file" id="file"(change)="onChange($event)" />
-        <button (click)="onUpload()" [disabled]="!file">Salvar</button>
+        <h2>Upload de arquivos</h2>
 
+        <label for="file" id="fileLabel">Selecionar</label>
+        <input type="file" id="file" (change)="onChange($event)" />
+        <button (click)="onUpload()" [disabled]="!file">Salvar</button>
 
         <!-- <label for="estados">Estados</label>
           <select formControlName="estados">

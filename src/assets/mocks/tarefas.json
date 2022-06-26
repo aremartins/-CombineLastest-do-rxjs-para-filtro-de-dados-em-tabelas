@@ -9,9 +9,36 @@
     },
     {
       "id": 2,
+      "perfil": {
+        "id": 1,
+        "nome": "Banco",
+        "aum": 3,
+        "profile": {
+          "id": 2,
+          "nivel": "assets"
+        },
+        "endereco": {
+          "estado": "Acre",
+          "country": "Brasil"
+        },
+        "contatos": [
+          {
+            "id": 1,
+            "name": "Marcio"
+          },
+          {
+            "id": 2,
+            "name": "João"
+          }
+        ]
+      },
       "nome": "aretha",
       "aum": "3000000000000000000",
-      "estados": ""
+      "address": {
+        "city": "",
+        "state": "",
+        "zip": ""
+      }
     },
     {
       "id": 3,
@@ -38,26 +65,15 @@
     },
     {
       "id": 4,
-      "nome": "Bola",
+      "perfil": "Banco",
+      "nome": "Bola2",
       "aum": 3,
-      "profile": {
-        "id": 2,
-        "nivel": "assets"
-      },
-      "endereco": {
-        "estado": "Acre",
-        "country": "Brasil"
-      },
-      "contatos": [
-        {
-          "id": 1,
-          "name": "Marcio"
-        },
-        {
-          "id": 2,
-          "name": "João"
-        }
-      ]
+      "address": {
+        "street": "Acre",
+        "city": "",
+        "state": "",
+        "zip": ""
+      }
     },
     {
       "id": 5,
@@ -581,28 +597,16 @@
       ]
     },
     {
-      "id": 7
-    },
-    {
-      "id": 8
-    },
-    {
-      "id": 9
-    },
-    {
-      "id": 10
-    },
-    {
-      "id": 11
-    },
-    {
-      "id": 12
-    },
-    {
-      "id": 13
-    },
-    {
-      "id": 14
+      "id": 12,
+      "perfil": "Banco",
+      "nome": "Rebecca",
+      "aum": 3,
+      "address": {
+        "street": "Acre",
+        "city": "",
+        "state": "",
+        "zip": ""
+      }
     }
   ]
 }
