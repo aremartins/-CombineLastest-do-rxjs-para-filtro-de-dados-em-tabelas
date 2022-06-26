@@ -86,55 +86,11 @@
       "id": 6,
       "nome": "Bola",
       "aum": 3,
-      "profile": {
-        "id": 2,
-        "nivel": "Banco"
-      },
-      "endereco": {
-        "estado": "Acre",
-        "country": "Brasil"
-      },
-      "contatos": [
-        {
-          "id": 1,
-          "name": "Marcio Assunc Leo"
-        },
-        {
-          "id": 2,
-          "name": "João Vitor"
-        },
-        {
-          "id": 3,
-          "name": "João Vitor"
-        },
-        {
-          "id": 4,
-          "name": "João Vitor"
-        },
-        {
-          "id": 1,
-          "nome": "Banco",
-          "aum": 3,
-          "profile": {
-            "id": 2,
-            "nivel": "outros"
-          },
-          "endereco": {
-            "estado": "Acre",
-            "country": "Brasil"
-          },
-          "contatos": [
-            {
-              "id": 1,
-              "name": "Marcio"
-            },
-            {
-              "id": 2,
-              "name": "João"
-            }
-          ]
-        }
-      ]
+      "address": {
+        "city": "",
+        "state": "",
+        "zip": ""
+      }
     },
     {
       "id": 1,

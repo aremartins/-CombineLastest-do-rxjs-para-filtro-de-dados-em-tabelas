@@ -7,13 +7,24 @@
     </ul>
   </aside>
   <section>
-    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" autocomplete="off">
+    <form [formGroup]="formulario" autocomplete="off">
       <div class="basic">
         <div class="header">
           <h2>Informações básicas</h2>
-          <button (click)="onSubmit()">Editar</button>
-          <button type="submit" [disabled]="!formulario.valid">Salvar</button>
-          <button (click)="Cancelar()">Cancelar</button>
+
+
+
+
+        <div class="buttons">
+            <div class="acoes-botoes" [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
+              <button class="acoes-botoes" type="submit" [disabled]="!formulario.valid"  (click)="onSubmit()">Salvar</button>
+              <button class="acoes-botoes" (click)="Cancelar()">Cancelar</button>
+
+            </div>
+            <button id="edit" (click)="toggle()">Editar</button>
+
+        </div>
+
         </div>
         <div class="inputs">
           <select formControlName="perfil" [compareWith]="compare">

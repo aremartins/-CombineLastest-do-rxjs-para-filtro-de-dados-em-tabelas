@@ -1,7 +1,7 @@
 import { Profile } from './../../models/tarefas';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Investidores } from '../../models/tarefas';
 import { ListagemService } from '../../services/listagem.service';
@@ -9,11 +9,40 @@ import { ProfilesService } from '../../services/profiles.service';
 import { Estados } from '../../models/estados';
 import { EstadosService } from '../../services/estados.service';
 import { map, switchMap } from 'rxjs';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 
 @Component({
   selector: 'app-caracteristicas',
   templateUrl: './caracteristicas.component.html',
   styleUrls: ['./caracteristicas.component.scss'],
+  animations: [
+    trigger('openClose', [
+      // ...
+      state(
+        'open',
+        style({
+          width: '100px',
+          opacity: 0,
+        })
+      ),
+      state(
+        'closed',
+        style({
+          width: '200px',
+          opacity: 1,
+        })
+      ),
+      transition('open => closed', [animate('1s')]),
+      transition('closed => open', [animate('0.5s')]),
+    ]),
+  ],
 })
 export class CaracteristicasComponent implements OnInit {
   investors: Investidores[] = [];
@@ -27,7 +56,8 @@ export class CaracteristicasComponent implements OnInit {
     private http: HttpClient,
     private profileService: ProfilesService,
     private estadosService: EstadosService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private el: ElementRef
   ) {
     this.formulario = new FormGroup({
       id: new FormControl(''),
@@ -38,8 +68,8 @@ export class CaracteristicasComponent implements OnInit {
         street: new FormControl(''),
         city: new FormControl(''),
         state: new FormControl(''),
-        zip: new FormControl('')
-      })
+        zip: new FormControl(''),
+      }),
     });
   }
 
@@ -69,11 +99,11 @@ export class CaracteristicasComponent implements OnInit {
         switchMap((id) => this.investidorService.getById(id))
       )
       .subscribe((investidor) => {
-        this.updateForm(investidor)
+        this.updateForm(investidor);
         // this.formulario.controls['profile']?.setValue(investidor.profile?.nivel) -não funcionou
       });
-      //se criar um Resolve, pode popular os dados assim:
-       // const investor = this.route.snapshot.data['investor']
+    //se criar um Resolve, pode popular os dados assim:
+    // const investor = this.route.snapshot.data['investor']
     // this.formulario = new FormGroup({
     //   perfil: new FormControl(investor.perfil.nivel),
     //   nome: new FormControl(investor.nome),
@@ -88,9 +118,9 @@ export class CaracteristicasComponent implements OnInit {
       nome: investidor.nome,
       aum: investidor.aum,
       // profile: investidor.profile?.nivel, - não populou o campo
-      address:{
-        street:investidor.endereco?.estado
-      }
+      address: {
+        street: investidor.endereco?.estado,
+      },
     });
     this.formulario.get('perfil')?.patchValue(investidor.profile?.nivel); //funciona!!
   }
@@ -142,7 +172,34 @@ export class CaracteristicasComponent implements OnInit {
     }
   }
 
+  isOpen = true;
+
+  toggle() {
+    this.isOpen = !this.isOpen;
+    let botaoEditar = this.el.nativeElement.querySelector('#edit');
+    let botoesDeAcao = this.el.nativeElement.querySelector('.acoes-botoes');
+
+    if (!botaoEditar.classList.contains('esconder')) {
+      botaoEditar.classList.add('esconder');
+       //só funciona na primeira vez
+    }else{
+      botaoEditar.classList.remove('esconder')
+    }
+
+
+  }
+
   Cancelar() {
     this.formulario.reset();
+    let botaoEditar = this.el.nativeElement.querySelector('#edit');
+    let botoesDeAcao = this.el.nativeElement.querySelectorAll('.acoes-botoes');
+
+
+    if(botaoEditar.classList.contains('esconder')) {//só funciona na primeira vez
+      botaoEditar.classList.remove('esconder')
+      botaoEditar.classList.add('aparecer')
+      botoesDeAcao.classList.add('esconder')
+    }
+
   }
 }

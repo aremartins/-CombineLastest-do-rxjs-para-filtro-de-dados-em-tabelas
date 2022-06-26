@@ -38,3 +38,25 @@ button{
   display: flex;
   place-self: center;
 }
+
+
+.buttons{
+  display:flex;
+  justify-content: space-around;
+}
+
+.esconder{
+  display:none;
+}
+
+.aparecer{
+  display:block;
+}
+
+
+.open-close-container {
+  display:flex;
+  justify-content: space-around;
+}
+
+
