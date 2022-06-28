@@ -1,62 +1,85 @@
-main{
+main {
   display: grid;
   grid-template-columns: 300px 1fr;
-  gap:20px;
+  gap: 20px;
   padding: 30px;
 }
 
-
-section{
+section {
   max-width: 900px;
-
 }
 
-.basic{
-  border:1px solid #d6d6d6;
-  padding:1rem;
+.basic {
+  border: 1px solid #d6d6d6;
+  padding: 1rem;
 }
 
-ul{
+ul {
   list-style: none;
 }
-
-.header{
-  display: flex;
-  justify-content:space-between;
-  border-bottom:1px solid #000;
+li {
+  position: relative;
 }
-input, select{
+
+// li:active::before{
+//   content:'';
+//   background-color: aqua;
+//   height: 40px;
+//   width: 4px;
+//   position: absolute;
+// }
+
+a:focus li{
+  background: #d2d2d2;
+}
+
+a:focus li::before {
+  content: "";
+  background-color: aqua;
+  height: 10px;
+  width: 4px;
+  position: absolute;
+  top: 5px;
+  left: -10px;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #000;
+}
+input,
+select {
   width: 100%;
 }
-.inputs{
-  padding:1rem;
-  display:flex;
-
+.inputs {
+  padding: 1rem;
+  display: flex;
 }
 
-button{
+button {
   display: flex;
   place-self: center;
 }
 
-
-.buttons{
-  display:flex;
+.buttons {
+  display: flex;
   justify-content: space-around;
 }
 
-.esconder{
-  display:none;
+.esconder {
+  display: none;
 }
 
-.aparecer{
-  display:block;
+.aparecer {
+  display: block;
 }
-
 
 .open-close-container {
-  display:flex;
+  display: flex;
   justify-content: space-around;
 }
-
-

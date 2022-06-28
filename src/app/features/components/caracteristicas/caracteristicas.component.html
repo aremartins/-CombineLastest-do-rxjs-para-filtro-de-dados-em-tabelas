@@ -1,38 +1,43 @@
 <main>
   <aside>
-    <ul>
-      <li>Informações básicas</li>
-      <li>Endereço</li>
-      <li>DIP</li>
+    <ul >
+      <a href="javascript:void(0)"><li >Informações básicas</li></a>
+      <a href="javascript:void(0)"><li >Endereço</li></a>
+      <a href="javascript:void(0)"><li >DIP</li></a>
     </ul>
   </aside>
   <section>
     <form [formGroup]="formulario" autocomplete="off">
       <div class="basic">
-        <div class="header">
+        <div class="header" id="infos">
           <h2>Informações básicas</h2>
 
-
-
-
-        <div class="buttons">
-            <div class="acoes-botoes" [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
-              <button class="acoes-botoes" type="submit" [disabled]="!formulario.valid"  (click)="onSubmit()">Salvar</button>
-              <button class="acoes-botoes" (click)="Cancelar()">Cancelar</button>
-
+          <div class="buttons">
+            <div
+              class="acoes-botoes"
+              [@slide]="isOpen ? 'open' : 'closed'"
+              class="open-close-container"
+            >
+              <button
+                class="acoes-botoes"
+                type="submit"
+                [disabled]="!formulario.valid"
+                (click)="onSubmit()"
+              >
+                Salvar
+              </button>
+              <button (click)="Cancelar()">Cancelar</button>
             </div>
             <button id="edit" (click)="toggle()">Editar</button>
-
-        </div>
-
+          </div>
         </div>
         <div class="inputs">
-          <select formControlName="perfil" [compareWith]="compare">
+          <select formControlName="perfil" >
             <option
-              [value]="investor.profile?.nivel"
-              *ngFor="let investor of investors"
+              [value]="perfil?.nivel"
+              *ngFor="let perfil of perfis"
             >
-              {{ investor.profile?.nivel }}
+              {{ perfil?.nivel }}
             </option>
           </select>
           <!-- popula o option com os dados dos investidores cadastrados -->

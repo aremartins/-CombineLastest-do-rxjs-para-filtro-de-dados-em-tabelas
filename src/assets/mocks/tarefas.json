@@ -2,36 +2,18 @@
   "investors": [
     {
       "id": 1,
-      "perfil": "assets",
+      "perfil": "Itau Asset",
       "nome": "Banco",
       "aum": 3,
-      "estados": "RN"
+      "address": {
+        "city": "",
+        "state": "",
+        "zip": ""
+      }
     },
     {
       "id": 2,
-      "perfil": {
-        "id": 1,
-        "nome": "Banco",
-        "aum": 3,
-        "profile": {
-          "id": 2,
-          "nivel": "assets"
-        },
-        "endereco": {
-          "estado": "Acre",
-          "country": "Brasil"
-        },
-        "contatos": [
-          {
-            "id": 1,
-            "name": "Marcio"
-          },
-          {
-            "id": 2,
-            "name": "João"
-          }
-        ]
-      },
+      "perfil": "Family",
       "nome": "aretha",
       "aum": "3000000000000000000",
       "address": {
@@ -42,26 +24,15 @@
     },
     {
       "id": 3,
+      "perfil": "assets",
       "nome": "Bola",
       "aum": 3,
-      "profile": {
-        "id": 2,
-        "nivel": "Banco"
-      },
-      "endereco": {
-        "estado": "Acre",
-        "country": "Brasil"
-      },
-      "contatos": [
-        {
-          "id": 1,
-          "name": "Marcio"
-        },
-        {
-          "id": 2,
-          "name": "João"
-        }
-      ]
+      "address": {
+        "street": "Acre",
+        "city": "",
+        "state": "",
+        "zip": ""
+      }
     },
     {
       "id": 4,
@@ -84,6 +55,7 @@
     },
     {
       "id": 6,
+      "perfil": "Family",
       "nome": "Bola",
       "aum": 3,
       "address": {
@@ -554,11 +526,10 @@
     },
     {
       "id": 12,
-      "perfil": "Banco",
+      "perfil": "Itau Asset",
       "nome": "Rebecca",
       "aum": 3,
       "address": {
-        "street": "Acre",
         "city": "",
         "state": "",
         "zip": ""

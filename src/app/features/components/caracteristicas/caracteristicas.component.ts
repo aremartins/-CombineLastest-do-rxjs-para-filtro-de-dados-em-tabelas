@@ -8,7 +8,7 @@ import { ListagemService } from '../../services/listagem.service';
 import { ProfilesService } from '../../services/profiles.service';
 import { Estados } from '../../models/estados';
 import { EstadosService } from '../../services/estados.service';
-import { map, switchMap } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs';
 import {
   trigger,
   state,
@@ -23,24 +23,24 @@ import {
   templateUrl: './caracteristicas.component.html',
   styleUrls: ['./caracteristicas.component.scss'],
   animations: [
-    trigger('openClose', [
+    trigger('slide', [
       // ...
       state(
-        'open',
+        'closed',
         style({
           width: '100px',
           opacity: 0,
         })
       ),
       state(
-        'closed',
+        'open',
         style({
           width: '200px',
           opacity: 1,
         })
       ),
-      transition('open => closed', [animate('1s')]),
-      transition('closed => open', [animate('0.5s')]),
+      transition('closed => open', [animate('0.5s ease-in')]),
+      transition('open => closed', [animate('0.3s  ease-in-out')]),
     ]),
   ],
 })
@@ -99,6 +99,9 @@ export class CaracteristicasComponent implements OnInit {
         switchMap((id) => this.investidorService.getById(id))
       )
       .subscribe((investidor) => {
+        this.formulario.controls['id'].setValue(investidor.id);
+        this.formulario.controls['nome'].setValue(investidor.nome);
+        this.formulario.controls['profile']?.setValue(investidor.profile.nivel);
         this.updateForm(investidor);
         // this.formulario.controls['profile']?.setValue(investidor.profile?.nivel) -não funcionou
       });
@@ -122,10 +125,17 @@ export class CaracteristicasComponent implements OnInit {
         street: investidor.endereco?.estado,
       },
     });
-    this.formulario.get('perfil')?.patchValue(investidor.profile?.nivel); //funciona!!
+    this.formulario.get('perfil')?.setValue(investidor.profile?.nivel); //funciona!!
+    this.formulario.get('perfil')?.valueChanges.pipe(
+      tap((perfil) => console.log('perfil', perfil)),
+      map((perfil) => this.perfis.filter((p) => p.nivel == perfil)),
+      tap((perfil) => console.log('perfil', perfil))
+    );
   }
 
   onSubmit() {
+    console.log(this.formulario);
+
     this.investidorService.patchInvestidor(this.formulario.value).subscribe(
       (success) => {
         console.log('ok', success);
@@ -150,11 +160,6 @@ export class CaracteristicasComponent implements OnInit {
     //   );
   }
 
-  compare(obj1: any, obj2: any) {
-    return obj1 && obj2
-      ? obj1.profile?.nivel === obj2.profile?.nivel
-      : obj1 === obj2;
-  }
 
   onChange(event: any) {
     this.file = new Set();
@@ -172,21 +177,44 @@ export class CaracteristicasComponent implements OnInit {
     }
   }
 
-  isOpen = true;
+  isOpen = false;
+  isShow = true;
+  isHidden = true;
 
   toggle() {
     this.isOpen = !this.isOpen;
+    this.isShow = !this.isShow;
+
     let botaoEditar = this.el.nativeElement.querySelector('#edit');
-    let botoesDeAcao = this.el.nativeElement.querySelector('.acoes-botoes');
+    let botoesDeAcao = this.el.nativeElement.querySelectorAll('.acoes-botoes');
 
-    if (!botaoEditar.classList.contains('esconder')) {
-      botaoEditar.classList.add('esconder');
-       //só funciona na primeira vez
-    }else{
-      botaoEditar.classList.remove('esconder')
+    //
+    //    //só funciona na primeira vez
+    // }else{
+    //   botaoEditar.classList.remove('esconder')
+    // }
+  }
+
+  showHiddenAoCancelar(): void {
+    this.isHidden = !this.isHidden;
+    this.isShow = true;
+    // let botaoEditar = this.el.nativeElement.querySelector('#edit');
+    // let botoesDeAcao = this.el.nativeElement.querySelectorAll('.buttons');
+    // if (!botaoEditar.classList.contains('esconder')) {
+    //   botaoEditar.classList.remove('aparecer');
+    //   botaoEditar.classList.add('esconder');
+    //   botoesDeAcao.classList.remove('esconder');
+    //   botoesDeAcao.classList.add('aparecer');
+    //   console.log('show');
+    // }
+  }
+
+  ativar(){
+     let li = this.el.nativeElement.querySelector('ul')
+     li = document.activeElement
+    if(!li.classList.contains('active')){
+      li.classList.add('active')
     }
-
-
   }
 
   Cancelar() {
@@ -194,12 +222,12 @@ export class CaracteristicasComponent implements OnInit {
     let botaoEditar = this.el.nativeElement.querySelector('#edit');
     let botoesDeAcao = this.el.nativeElement.querySelectorAll('.acoes-botoes');
 
-
-    if(botaoEditar.classList.contains('esconder')) {//só funciona na primeira vez
-      botaoEditar.classList.remove('esconder')
-      botaoEditar.classList.add('aparecer')
-      botoesDeAcao.classList.add('esconder')
+    if (botaoEditar.classList.contains('esconder')) {
+      //só funciona na primeira vez
+      botaoEditar.classList.remove('esconder');
+      botaoEditar.classList.add('aparecer');
+      //   botoesDeAcao.classList.add('esconder');
+      // }
     }
-
   }
 }
