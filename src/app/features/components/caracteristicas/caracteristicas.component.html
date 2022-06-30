@@ -1,9 +1,9 @@
 <main>
   <aside>
-    <ul >
-      <a href="javascript:void(0)"><li >Informações básicas</li></a>
-      <a href="javascript:void(0)"><li >Endereço</li></a>
-      <a href="javascript:void(0)"><li >DIP</li></a>
+    <ul>
+      <a href="javascript:void(0)"><li>Informações básicas</li></a>
+      <a href="javascript:void(0)"><li>Endereço</li></a>
+      <a href="javascript:void(0)"><li>DIP</li></a>
     </ul>
   </aside>
   <section>
@@ -11,32 +11,28 @@
       <div class="basic">
         <div class="header" id="infos">
           <h2>Informações básicas</h2>
-
           <div class="buttons">
-            <div
-              class="acoes-botoes"
-              [@slide]="isOpen ? 'open' : 'closed'"
-              class="open-close-container"
-            >
+            <div [@slide]="isOpen ? 'open' : 'closed'" class="open-close-container">
               <button
-                class="acoes-botoes"
+                class="btn2"
                 type="submit"
                 [disabled]="!formulario.valid"
                 (click)="onSubmit()"
               >
                 Salvar
               </button>
-              <button (click)="Cancelar()">Cancelar</button>
+              <div class="alert alert-info" *ngIf="showSucessMessage">
+                O
+              </div>
+
             </div>
-            <button id="edit" (click)="toggle()">Editar</button>
+            <button class="btn3" id="cancel" (click)="Cancelar()">Cancelar</button>
+            <button class="btn1" id="edit" (click)="toggle()">Editar</button>
           </div>
         </div>
         <div class="inputs">
-          <select formControlName="perfil" >
-            <option
-              [value]="perfil?.nivel"
-              *ngFor="let perfil of perfis"
-            >
+          <select formControlName="perfil" readonly>
+            <option [value]="perfil?.nivel" *ngFor="let perfil of perfis" >
               {{ perfil?.nivel }}
             </option>
           </select>
@@ -44,7 +40,7 @@
           <label for="nome">Nome</label>
           <input type="text" id="nome" formControlName="nome" />
           <label for="aum">AUM</label>
-          <input type="text" formControlName="aum" />
+          <input type="text" formControlName="aum" readonly />
         </div>
       </div>
       <div formGroupName="address">

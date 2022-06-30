@@ -2,8 +2,7 @@
   "investors": [
     {
       "id": 1,
-      "perfil": "Itau Asset",
-      "nome": "Banco",
+      "nome": "arere",
       "aum": 3,
       "address": {
         "city": "",

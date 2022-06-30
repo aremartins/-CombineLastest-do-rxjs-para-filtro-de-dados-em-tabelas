@@ -14,6 +14,7 @@ section {
   padding: 1rem;
 }
 
+
 ul {
   list-style: none;
 }
@@ -61,6 +62,47 @@ select {
   display: flex;
 }
 
+// .open-close-container{
+//   opacity: 0;
+//   tranform: translateX(200px)
+// }
+
+// .open-close-container.animar {
+//   animation-name:slide ;
+//   animation-duration: 2s;
+//   animation-fill-mode:both;
+//   animation-timing-function: linear;
+//   // animation-delay: 1s;
+//   // animation-direction: reverse;
+//   animation-play-state: running;
+//   // animation-iteration-count: infinite;
+// }
+
+// @keyframes slide {
+//   from{
+//     opacity: 0;
+//   }
+//   to{
+//     opacity: 1;
+//     transform: translateX(0);
+//   }
+// }
+
+// .btn2 {
+//   position:absolute;
+//   left: 0;
+// }
+
+// .btn3 {
+//   position:absolute;
+//   left: 0;
+// }
+// .btn1 {
+//   z-index: 1;
+// }
+
+
+
 button {
   display: flex;
   place-self: center;
@@ -69,17 +111,41 @@ button {
 .buttons {
   display: flex;
   justify-content: space-around;
+  position:relative;
+
 }
 
-.esconder {
-  display: none;
+.btn3{
+  position:absolute;
+  left: 50%;
+  opacity: 0;
+
 }
 
-.aparecer {
-  display: block;
+.btn1{
+  z-index:1;
 }
+
+.esconder{
+  opacity:0;
+transition-duration: 0.2s;}
+
+.aparecer{
+  opacity: 1;
+}
+
+
 
 .open-close-container {
   display: flex;
   justify-content: space-around;
+
+}
+.btn2{
+  position:relative;
+}
+.alert {
+  position:absolute;
+  left:140px;
+  top:20px;
 }
