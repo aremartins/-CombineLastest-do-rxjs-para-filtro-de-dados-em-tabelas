@@ -3,7 +3,6 @@
     {
       "id": 1,
       "nome": "arere",
-      "aum": 3,
       "address": {
         "city": "",
         "state": "",
@@ -12,7 +11,6 @@
     },
     {
       "id": 2,
-      "perfil": "Family",
       "nome": "aretha",
       "aum": "3000000000000000000",
       "address": {
@@ -529,6 +527,18 @@
       "nome": "Rebecca",
       "aum": 3,
       "address": {
+        "city": "",
+        "state": "",
+        "zip": ""
+      }
+    },
+    {
+      "id": 30,
+      "perfil": "Itau Asset",
+      "nome": "Banco",
+      "aum": 3,
+      "address": {
+        "street": "Acre",
         "city": "",
         "state": "",
         "zip": ""

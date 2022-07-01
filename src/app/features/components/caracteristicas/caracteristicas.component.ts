@@ -60,6 +60,7 @@ import {
 //   ]),
 // ],
 export class CaracteristicasComponent implements OnInit {
+  editar = false;
   investors: Investidores[] = [];
   formulario: FormGroup;
   perfis: Profile[] = [];
@@ -67,6 +68,7 @@ export class CaracteristicasComponent implements OnInit {
   file!: Set<File>;
   submitted: boolean = false;
   showSucessMessage: boolean = false;
+  disabledValue = true;
 
   constructor(
     private investidorService: ListagemService,
@@ -78,9 +80,9 @@ export class CaracteristicasComponent implements OnInit {
   ) {
     this.formulario = new FormGroup({
       id: new FormControl(''),
-      perfil: new FormControl(''),
-      nome: new FormControl('', [Validators.minLength(3), Validators.required]),
-      aum: new FormControl(''),
+      perfil: new FormControl({ value: '', disabled: true }),
+      nome: new FormControl('', [Validators.minLength(3)]),
+      aum: new FormControl({ value: '', disabled: true }),
       address: new FormGroup({
         street: new FormControl(''),
         city: new FormControl(''),
@@ -120,7 +122,6 @@ export class CaracteristicasComponent implements OnInit {
         this.formulario.controls['nome'].setValue(investidor.nome);
         this.formulario.controls['profile']?.setValue(investidor.profile.nivel);
         this.updateForm(investidor);
-        // this.formulario.controls['profile']?.setValue(investidor.profile?.nivel) -não funcionou
       });
     //se criar um Resolve, pode popular os dados assim:
     // const investor = this.route.snapshot.data['investor']
@@ -151,16 +152,16 @@ export class CaracteristicasComponent implements OnInit {
   }
 
   onSubmit() {
-    const salvar = this.el.nativeElement.querySelector('.btn2');
-    const cancelar = this.el.nativeElement.querySelector('.btn3');
-    let editar = this.el.nativeElement.querySelector('#edit');
     console.log(this.formulario.value);
     //Tentou enviar
     this.submitted = true;
-    cancelar.classList.remove('aparecer');
-    cancelar.classList.add('esconder');
-    editar.classList.remove('aparecer');
-    editar.classList.add('esconder');
+    let botaoEditar = this.el.nativeElement.querySelector('#edit');
+    let botaoCancelar = this.el.nativeElement.querySelector('#cancel');
+    let salvar = this.el.nativeElement.querySelector('.btn2');
+    if (salvar.classList.contains('andar')) {
+      salvar.classList.remove('andar');
+    }
+
     //Valido?
     if (this.formulario.valid) {
       this.investidorService.patchInvestidor(this.formulario.value).subscribe(
@@ -169,19 +170,20 @@ export class CaracteristicasComponent implements OnInit {
           this.showSucessMessage = true;
           //Volta para false depois de 3 seg.
           setTimeout(() => (this.showSucessMessage = false), 3000);
-          setTimeout(
-            () => salvar.classList.remove('aparecer'),
-            3000,
-            salvar.classList.add('esconder'),
-            4000,
-            editar.classList.remove('aparecer'),
-            4000,
-            editar.classList.add('esconder'),
-            4000
-          );
-          setTimeout(() => editar.classList.add('aparecer'), 3000);
-          setTimeout(() => editar.classList.remove('esconder'), 5000);
-          setTimeout(() =>cancelar.classList.remove('esconder'), 5000);
+          botaoCancelar.classList.remove('aparecer');
+          botaoCancelar.classList.add('esconder');
+          botaoEditar.classList.add('aparecer');
+          salvar.classList.remove('aparecer');
+
+          salvar.classList.add('esconder');
+          botaoEditar.classList.remove('aparecer');
+
+          botaoEditar.classList.add('esconder');
+          setTimeout(() => {
+            botaoEditar.classList.remove('esconder'),
+              botaoEditar.classList.add('aparecer');
+          }, 3000);
+          this.formulario.disable();
         },
         (error) => console.log(error, 'erro '),
         () => console.log('update completo')
@@ -191,9 +193,9 @@ export class CaracteristicasComponent implements OnInit {
 
       //Enviou
       this.submitted = false;
-
     }
     console.log(this.formulario);
+
   }
 
   onChange(event: any) {
@@ -202,10 +204,6 @@ export class CaracteristicasComponent implements OnInit {
     const selectedFiles = <FileList>event.target.files;
     document.getElementById('fileLabel')!.innerHTML = selectedFiles[0].name;
     this.file.add(selectedFiles[0]);
-  }
-
-  edit() {
-    this.formulario.enable();
   }
 
   onUpload() {
@@ -228,12 +226,15 @@ export class CaracteristicasComponent implements OnInit {
     let salvar = this.el.nativeElement.querySelector('.btn2');
     if (
       botaoCancelar.classList.contains('esconder') ||
-      botaoCancelar.classList.contains('aparecer')
+      botaoCancelar.classList.contains('aparecer') ||
+      salvar.classList.contains('esconder') ||
+      salvar.classList.contains('aparecer')
     ) {
       botaoCancelar.classList.remove('esconder');
       botaoCancelar.classList.remove('aparecer');
+      salvar.classList.remove('aparecer');
+      salvar.classList.remove('esconder');
     }
-
 
     if (!botaoEditar.classList.contains('esconder')) {
       botaoEditar.classList.remove('aparecer');
@@ -254,6 +255,16 @@ export class CaracteristicasComponent implements OnInit {
     // }else{
     //   botaoEditar.classList.remove('esconder')
     // }
+    this.animar();
+  }
+
+  animar() {
+    let salvar = this.el.nativeElement.querySelector('.btn2');
+    if (!salvar.classList.contains('andar')) {
+      salvar.classList.add('andar');
+    } else {
+      salvar.classList.remove('andar');
+    }
   }
 
   showHiddenAoCancelar(): void {
@@ -279,15 +290,23 @@ export class CaracteristicasComponent implements OnInit {
     }
   }
 
-  Cancelar() {
-    this.formulario.reset();
-    let botaoEditar = this.el.nativeElement.querySelector('#edit');
-    let botoesDeAcao = this.el.nativeElement.querySelectorAll('.acoes-botoes');
+  // let botaoEditar = this.el.nativeElement.querySelector('#edit');
+  // let botoesDeAcao = this.el.nativeElement.querySelectorAll('.acoes-botoes');
 
-    // botaoEditar.classList.contains('esconder');
-    // botaoEditar.classList.remove('esconder');
-    // botaoEditar.classList.add('aparecer');
-    //   botoesDeAcao.classList.add('esconder');
-    // }
+  // botaoEditar.classList.contains('esconder');
+  // botaoEditar.classList.remove('esconder');
+  // botaoEditar.classList.add('aparecer');
+  //   botoesDeAcao.classList.add('esconder');
+  // }
+
+  editarForm() {
+    // this.editar = true;
+    this.formulario.enable();
+  }
+
+  cancelar() {
+    console.log('oi' + this.formulario);
+
+    this.formulario.disable();
   }
 }

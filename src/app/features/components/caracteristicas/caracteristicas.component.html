@@ -1,18 +1,20 @@
+
+ <nav>
+  <ul>
+    <a href="javascript:void(0)"><li>Informações básicas</li></a>
+    <a href="javascript:void(0)"><li>Endereço</li></a>
+    <a href="javascript:void(0)"><li>DIP</li></a>
+  </ul>
+</nav>
 <main>
-  <aside>
-    <ul>
-      <a href="javascript:void(0)"><li>Informações básicas</li></a>
-      <a href="javascript:void(0)"><li>Endereço</li></a>
-      <a href="javascript:void(0)"><li>DIP</li></a>
-    </ul>
-  </aside>
+
   <section>
     <form [formGroup]="formulario" autocomplete="off">
       <div class="basic">
         <div class="header" id="infos">
           <h2>Informações básicas</h2>
           <div class="buttons">
-            <div [@slide]="isOpen ? 'open' : 'closed'" class="open-close-container">
+            <div class="open-close-container">
               <button
                 class="btn2"
                 type="submit"
@@ -26,21 +28,24 @@
               </div>
 
             </div>
-            <button class="btn3" id="cancel" (click)="Cancelar()">Cancelar</button>
-            <button class="btn1" id="edit" (click)="toggle()">Editar</button>
+             <button class="btn3" id="cancel" (click)="cancelar()" (click)="toggle()">Cancelar</button>
+            <button class="btn1" id="edit" (click)="toggle()" (click)="editarForm()">Editar</button>
+
           </div>
+          <!-- <button class="btn3" id="cancel" (click)="cancelar()">Cancelar</button> -->
+
         </div>
         <div class="inputs">
-          <select formControlName="perfil" readonly>
+          <select formControlName="perfil">
             <option [value]="perfil?.nivel" *ngFor="let perfil of perfis" >
               {{ perfil?.nivel }}
             </option>
           </select>
           <!-- popula o option com os dados dos investidores cadastrados -->
           <label for="nome">Nome</label>
-          <input type="text" id="nome" formControlName="nome" />
+          <div *ngIf="editar" ><input type="text" id="nome" formControlName="nome"/></div>
           <label for="aum">AUM</label>
-          <input type="text" formControlName="aum" readonly />
+          <input type="text" formControlName="aum"/>
         </div>
       </div>
       <div formGroupName="address">
@@ -57,9 +62,59 @@
 
         <label for="zip">Zip Code: </label>
         <input id="zip" type="text" formControlName="zip" />
+
+
       </div>
     </form>
 
+    <div>
+      <div>
+        <h2>Upload de arquivos</h2>
+
+        <label for="file" id="fileLabel">Selecionar</label>
+        <input type="file" id="file" (change)="onChange($event)" />
+        <button (click)="onUpload()" [disabled]="!file">Salvar</button>
+
+        <!-- <label for="estados">Estados</label>
+          <select formControlName="estados">
+            <option [value]="investor.endereco?.estado" *ngFor="let investor of investors">{{ investor.endereco?.estado }}</option>
+            </select>
+          <label for="aum">AUM</label>
+          <input formControlName="aum" id="aum"> -->
+      </div>
+    </div>
+    <div>
+      <div>
+        <h2>Upload de arquivos</h2>
+
+        <label for="file" id="fileLabel">Selecionar</label>
+        <input type="file" id="file" (change)="onChange($event)" />
+        <button (click)="onUpload()" [disabled]="!file">Salvar</button>
+
+        <!-- <label for="estados">Estados</label>
+          <select formControlName="estados">
+            <option [value]="investor.endereco?.estado" *ngFor="let investor of investors">{{ investor.endereco?.estado }}</option>
+            </select>
+          <label for="aum">AUM</label>
+          <input formControlName="aum" id="aum"> -->
+      </div>
+    </div>
+    <div>
+      <div>
+        <h2>Upload de arquivos</h2>
+
+        <label for="file" id="fileLabel">Selecionar</label>
+        <input type="file" id="file" (change)="onChange($event)" />
+        <button (click)="onUpload()" [disabled]="!file">Salvar</button>
+
+        <!-- <label for="estados">Estados</label>
+          <select formControlName="estados">
+            <option [value]="investor.endereco?.estado" *ngFor="let investor of investors">{{ investor.endereco?.estado }}</option>
+            </select>
+          <label for="aum">AUM</label>
+          <input formControlName="aum" id="aum"> -->
+      </div>
+    </div>
     <div>
       <div>
         <h2>Upload de arquivos</h2>
