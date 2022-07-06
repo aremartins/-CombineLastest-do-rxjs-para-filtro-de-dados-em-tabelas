@@ -80,7 +80,7 @@ export class CaracteristicasComponent implements OnInit {
   ) {
     this.formulario = new FormGroup({
       id: new FormControl(''),
-      perfil: new FormControl({ value: '', disabled: true }),
+      perfil: new FormControl(''),
       nome: new FormControl('', [Validators.minLength(3)]),
       aum: new FormControl({ value: '', disabled: true }),
       address: new FormGroup({
@@ -122,6 +122,8 @@ export class CaracteristicasComponent implements OnInit {
         this.formulario.controls['nome'].setValue(investidor.nome);
         this.formulario.controls['profile']?.setValue(investidor.profile.nivel);
         this.updateForm(investidor);
+        this.formulario.controls['profile'].value.disable()
+
       });
     //se criar um Resolve, pode popular os dados assim:
     // const investor = this.route.snapshot.data['investor']
@@ -185,7 +187,19 @@ export class CaracteristicasComponent implements OnInit {
           }, 3000);
           this.formulario.disable();
         },
-        (error) => console.log(error, 'erro '),
+        (error) => {
+          if (error.status === 404) {
+            // A client-side or network error occurred. Handle it accordingly.
+            alert('An error occurred:'+ error.error);
+          } else if(error.status === 500) {
+            alert('Servidor:'+ error.error)
+          } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong.
+            console.error(
+              `Backend returned code ${error.status}, body was: `, error.error);
+          }
+        },
         () => console.log('update completo')
       );
 

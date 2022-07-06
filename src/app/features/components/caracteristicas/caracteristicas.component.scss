@@ -75,6 +75,12 @@ select {
   display: flex;
 }
 
+select:disabled {
+  color: red;
+  opacity: 0.7;
+  border-color: rgba(118, 118, 118, 0.3);
+}
+
 // .open-close-container{
 //   opacity: 0;
 //   tranform: translateX(200px)
