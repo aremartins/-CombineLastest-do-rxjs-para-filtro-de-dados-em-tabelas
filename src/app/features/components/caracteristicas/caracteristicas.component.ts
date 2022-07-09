@@ -1,6 +1,6 @@
 import { Profile } from './../../models/tarefas';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpRequest } from '@angular/common/http';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Investidores } from '../../models/tarefas';
@@ -66,9 +66,12 @@ export class CaracteristicasComponent implements OnInit {
   perfis: Profile[] = [];
   estados: Estados[] = [];
   file!: Set<File>;
-  submitted: boolean = false;
-  showSucessMessage: boolean = false;
+  showLoading: boolean = false;
   disabledValue = true;
+  isEdit: boolean = true
+  isSaving: boolean = false
+  isAnime:boolean = false
+  isActive:boolean = false
 
   constructor(
     private investidorService: ListagemService,
@@ -94,7 +97,6 @@ export class CaracteristicasComponent implements OnInit {
 
   ngOnInit(): void {
     this.investidorService.getInvestidor().subscribe((dados) => {
-      //foi preciso buscar os investidores na service para popular as opções dos selects
       this.investors = dados;
     });
     this.profileService
@@ -154,48 +156,25 @@ export class CaracteristicasComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formulario.value);
-    //Tentou enviar
-    this.submitted = true;
-    let botaoEditar = this.el.nativeElement.querySelector('#edit');
-    let botaoCancelar = this.el.nativeElement.querySelector('#cancel');
-    let salvar = this.el.nativeElement.querySelector('.btn2');
-    if (salvar.classList.contains('andar')) {
-      salvar.classList.remove('andar');
-    }
-
-    //Valido?
     if (this.formulario.valid) {
       this.investidorService.patchInvestidor(this.formulario.value).subscribe(
         (success) => {
-          console.log('ok', success);
-          this.showSucessMessage = true;
-          //Volta para false depois de 3 seg.
-          setTimeout(() => (this.showSucessMessage = false), 3000);
-          botaoCancelar.classList.remove('aparecer');
-          botaoCancelar.classList.add('esconder');
-          botaoEditar.classList.add('aparecer');
-          salvar.classList.remove('aparecer');
+          this.showLoading = true;
+          this.isSaving = false
+          setTimeout(() => (this.showLoading = false), 3000);
+          setTimeout(() => (this.isEdit = true), 3000);
 
-          salvar.classList.add('esconder');
-          botaoEditar.classList.remove('aparecer');
-
-          botaoEditar.classList.add('esconder');
-          setTimeout(() => {
-            botaoEditar.classList.remove('esconder'),
-              botaoEditar.classList.add('aparecer');
-          }, 3000);
-          this.formulario.disable();
         },
         (error) => {
-          if (error.status === 404) {
-            // A client-side or network error occurred. Handle it accordingly.
+          this.showLoading = true;
+          this.isSaving = false
+          setTimeout(() => (this.showLoading = false), 3000);
+          setTimeout(() => (this.isEdit = true), 3000);
+          if (error.status == HttpErrorResponse.name) {
             alert('An error occurred:'+ error.error);
           } else if(error.status === 500) {
             alert('Servidor:'+ error.error)
           } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong.
             console.error(
               `Backend returned code ${error.status}, body was: `, error.error);
           }
@@ -203,10 +182,7 @@ export class CaracteristicasComponent implements OnInit {
         () => console.log('update completo')
       );
 
-      //Mostra mensagem de sucesso
 
-      //Enviou
-      this.submitted = false;
     }
     console.log(this.formulario);
 
@@ -228,73 +204,6 @@ export class CaracteristicasComponent implements OnInit {
     }
   }
 
-  isOpen = false;
-  isShow = true;
-  isHidden = true;
-
-  toggle() {
-    this.isOpen = !this.isOpen;
-    this.isShow = !this.isShow;
-    let botaoEditar = this.el.nativeElement.querySelector('#edit');
-    let botaoCancelar = this.el.nativeElement.querySelector('#cancel');
-    let salvar = this.el.nativeElement.querySelector('.btn2');
-    if (
-      botaoCancelar.classList.contains('esconder') ||
-      botaoCancelar.classList.contains('aparecer') ||
-      salvar.classList.contains('esconder') ||
-      salvar.classList.contains('aparecer')
-    ) {
-      botaoCancelar.classList.remove('esconder');
-      botaoCancelar.classList.remove('aparecer');
-      salvar.classList.remove('aparecer');
-      salvar.classList.remove('esconder');
-    }
-
-    if (!botaoEditar.classList.contains('esconder')) {
-      botaoEditar.classList.remove('aparecer');
-      botaoEditar.classList.add('esconder');
-      botaoCancelar.classList.add('aparecer');
-      salvar.classList.add('aparecer');
-    } else {
-      botaoEditar.classList.remove('esconder');
-      botaoEditar.classList.add('aparecer');
-      botaoCancelar.classList.remove('aparecer');
-      botaoCancelar.classList.add('esconder');
-      salvar.classList.remove('aparecer');
-      salvar.classList.add('esconder');
-    }
-
-    //botao
-    //    //só funciona na primeira vez
-    // }else{
-    //   botaoEditar.classList.remove('esconder')
-    // }
-    this.animar();
-  }
-
-  animar() {
-    let salvar = this.el.nativeElement.querySelector('.btn2');
-    if (!salvar.classList.contains('andar')) {
-      salvar.classList.add('andar');
-    } else {
-      salvar.classList.remove('andar');
-    }
-  }
-
-  showHiddenAoCancelar(): void {
-    this.isHidden = !this.isHidden;
-    this.isShow = true;
-    let botaoEditar = this.el.nativeElement.querySelector('#edit');
-    // let botoesDeAcao = this.el.nativeElement.querySelectorAll('.buttons');
-    if (botaoEditar.classList.contains('esconder')) {
-      botaoEditar.classList.remove('esconder');
-      botaoEditar.classList.add('aparecer');
-    }
-    //   botoesDeAcao.classList.remove('esconder');
-    //   botoesDeAcao.classList.add('aparecer');
-    //   console.log('show');
-    // }
-  }
 
   ativar() {
     let li = this.el.nativeElement.querySelector('ul');
@@ -304,23 +213,17 @@ export class CaracteristicasComponent implements OnInit {
     }
   }
 
-  // let botaoEditar = this.el.nativeElement.querySelector('#edit');
-  // let botoesDeAcao = this.el.nativeElement.querySelectorAll('.acoes-botoes');
 
-  // botaoEditar.classList.contains('esconder');
-  // botaoEditar.classList.remove('esconder');
-  // botaoEditar.classList.add('aparecer');
-  //   botoesDeAcao.classList.add('esconder');
-  // }
 
   editarForm() {
-    // this.editar = true;
+    this.isEdit = !this.isEdit;
+    this.isSaving = true
     this.formulario.enable();
   }
 
   cancelar() {
-    console.log('oi' + this.formulario);
-
+    this.isEdit = true
+    this.isSaving = false
     this.formulario.disable();
   }
 }

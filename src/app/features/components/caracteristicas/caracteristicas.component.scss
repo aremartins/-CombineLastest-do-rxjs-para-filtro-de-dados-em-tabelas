@@ -35,13 +35,13 @@ li {
   position: relative;
 }
 
-// li:active::before{
-//   content:'';
-//   background-color: aqua;
-//   height: 40px;
-//   width: 4px;
-//   position: absolute;
-// }
+li:active::before{
+  content:'';
+  background-color: aqua;
+  height: 40px;
+  width: 4px;
+  position: absolute;
+}
 
 a:focus li {
   background: #d2d2d2;
@@ -81,44 +81,6 @@ select:disabled {
   border-color: rgba(118, 118, 118, 0.3);
 }
 
-// .open-close-container{
-//   opacity: 0;
-//   tranform: translateX(200px)
-// }
-
-// .open-close-container.animar {
-//   animation-name:slide ;
-//   animation-duration: 2s;
-//   animation-fill-mode:both;
-//   animation-timing-function: linear;
-//   // animation-delay: 1s;
-//   // animation-direction: reverse;
-//   animation-play-state: running;
-//   // animation-iteration-count: infinite;
-// }
-
-// @keyframes slide {
-//   from{
-//     opacity: 0;
-//   }
-//   to{
-//     opacity: 1;
-//     transform: translateX(0);
-//   }
-// }
-
-// .btn2 {
-//   position:absolute;
-//   left: 0;
-// }
-
-// .btn3 {
-//   position:absolute;
-//   left: 0;
-// }
-// .btn1 {
-//   z-index: 1;
-// }
 
 button {
   display: flex;
@@ -191,6 +153,6 @@ button {
 }
 .alert {
   position: absolute;
-  left: 110px;
+  left: 50px;
   top: 20px;
 }

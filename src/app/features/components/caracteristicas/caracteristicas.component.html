@@ -1,9 +1,9 @@
 
  <nav>
   <ul>
-    <a href="javascript:void(0)"><li>Informações básicas</li></a>
-    <a href="javascript:void(0)"><li>Endereço</li></a>
-    <a href="javascript:void(0)"><li>DIP</li></a>
+    <li [ngClass]="{'active': !isActive}">Informações básicas</li>
+    <li [ngClass]="{'active': !isActive}">Endereço</li>
+    <li [ngClass]="{'active': !isActive}">DIP</li>
   </ul>
 </nav>
 <main>
@@ -16,23 +16,22 @@
           <div class="buttons">
             <div class="open-close-container">
               <button
-                class="btn2"
+              *ngIf="isSaving"
                 type="submit"
                 [disabled]="!formulario.valid"
                 (click)="onSubmit()"
+                [ngClass]="{'andar': !isAnime}"
               >
                 Salvar
               </button>
-              <div class="alert alert-info" *ngIf="showSucessMessage">
-                O
-              </div>
-
             </div>
-             <button class="btn3" id="cancel" (click)="cancelar()" (click)="toggle()">Cancelar</button>
-            <button class="btn1" id="edit" (click)="toggle()" (click)="editarForm()">Editar</button>
+             <button *ngIf="isSaving" id="cancel" (click)="cancelar()" >Cancelar</button>
+            <button *ngIf="isEdit" id="edit"  (click)="editarForm()">Editar</button>
+            <div *ngIf="showLoading">
+              O
+            </div>
 
           </div>
-          <!-- <button class="btn3" id="cancel" (click)="cancelar()">Cancelar</button> -->
 
         </div>
         <div class="inputs">
