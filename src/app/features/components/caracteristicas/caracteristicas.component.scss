@@ -35,7 +35,15 @@ li {
   position: relative;
 }
 
-li:active::before{
+.active {
+  background-color: aquamarine;
+}
+
+.desactive{
+  background-color: #d2d2d2;
+}
+
+.active li:active::before{
   content:'';
   background-color: aqua;
   height: 40px;

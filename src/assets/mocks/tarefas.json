@@ -2,7 +2,6 @@
   "investors": [
     {
       "id": 1,
-      "perfil": "Assets",
       "nome": "arere",
       "aum": 1,
       "address": {

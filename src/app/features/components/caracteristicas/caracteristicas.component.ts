@@ -213,6 +213,10 @@ export class CaracteristicasComponent implements OnInit {
     }
   }
 
+  activar(){
+    this.isActive = true
+  }
+
 
 
   editarForm() {
